@@ -2,6 +2,13 @@ import java.sql.*;
 
 public class Insert {
 
+    /**
+     *
+     * Méthode qui possède un main qui ajoute un tuple dans la base de données
+     *
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException {
         try {
             String dbName= "tp_jdbc";

@@ -3,6 +3,13 @@ import java.util.Scanner;
 
 public class Delete {
 
+    /**
+     *
+     * Méthode qui permet de supprimer des lignes dans la table dont l’identifiant est demandé à l’utlisateur
+     *
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException {
         try {
             String dbName= "tp_jdbc";

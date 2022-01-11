@@ -2,6 +2,13 @@ import java.sql.*;
 
 public class Select {
 
+    /**
+     *
+     * Méthode qui affiche les personnes de la table avec leur nom, login, statut et age.
+     *
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException  {
         try {
             String dbName= "tp_jdbc";

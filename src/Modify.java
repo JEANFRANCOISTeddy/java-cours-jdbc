@@ -3,6 +3,13 @@ import java.util.Scanner;
 
 public class Modify {
 
+    /**
+     *
+     * Méthode permettant de modifier l’orthographe d’un statut connaissant son identifiant.
+     *
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException {
         try {
             String dbName= "tp_jdbc";

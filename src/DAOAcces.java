@@ -6,6 +6,12 @@ public class DAOAcces {
 
     private static Connection connection;
 
+    /**
+     *
+     * Méthode qui permet d'instancier une connexion à notre base de données
+     *
+     * @throws SQLException
+     */
     public DAOAcces() throws SQLException  {
         try {
             String dbName= "tp_jdbc";
@@ -83,6 +89,10 @@ public class DAOAcces {
         }
     }
 
+    /**
+     * Méthode qui permet de lister le contenu de la table en mode console
+     * @throws SQLException
+     */
     public void lister() throws SQLException {
         try( Statement statement = connection.createStatement() ) {
             ResultSet rsUsers = statement.executeQuery("select * from Acces");
@@ -96,6 +106,17 @@ public class DAOAcces {
         }
     }
 
+    /**
+     *
+     * Méthode qui permet d’ajouter un Accès, les paramètres sont les tuples de la table
+     *
+     * @param prenom
+     * @param login
+     * @param password
+     * @param statut
+     * @param age
+     * @throws SQLException
+     */
     public void ajouter(String prenom, String login, String password, String statut, int age) throws SQLException {
         try( Statement statement = connection.createStatement() ) {
             statement.executeUpdate("insert into Acces (prenom, login, password, statut, age) values ('"
@@ -109,6 +130,13 @@ public class DAOAcces {
         }
     }
 
+    /**
+     *
+     * Méthode qui permet de supprimer des accès, les paramètres sont l’identifiant du tuple.
+     *
+     * @param id
+     * @throws SQLException
+     */
     public void supprimer(String id) throws SQLException {
         try( Statement statement = connection.createStatement() ) {
             statement.executeUpdate("delete from Acces where id = " + id);
@@ -117,6 +145,13 @@ public class DAOAcces {
         }
     }
 
+    /**
+     *
+     * Méthode  qui retourne un ArrayList d’objets Acces.
+     *
+     * @return ArrayList d’objets Acces.
+     * @throws SQLException
+     */
     public static ArrayList<Acces> listerDAO() throws SQLException {
         ArrayList<Acces> acces = new ArrayList<Acces>();
         try( Statement statement = connection.createStatement() ) {
@@ -141,6 +176,13 @@ public class DAOAcces {
         return acces;
     }
 
+    /**
+     *
+     * Méthode qui prend en parametre un objet de type Acces et qui l’insere dans la BDD
+     *
+     * @param acces
+     * @throws SQLException
+     */
     public static void ajouterDAO(Acces acces) throws SQLException {
         try( Statement statement = connection.createStatement() ) {
             statement.executeUpdate("insert into Acces (prenom, login, password, statut, age) values ('"
@@ -154,6 +196,13 @@ public class DAOAcces {
         }
     }
 
+    /**
+     *
+     * Méthode qui prend en parametre un objet Acces et le supprime de la BDD
+     *
+     * @param acces
+     * @throws SQLException
+     */
     public static void supprimerDAO(Acces acces) throws SQLException {
         try( Statement statement = connection.createStatement() ) {
             statement.executeUpdate("delete from Acces where id = " + acces.id);
