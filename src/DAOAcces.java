@@ -117,7 +117,7 @@ public class DAOAcces {
         }
     }
 
-    public static void listerDAO() throws SQLException {
+    public static ArrayList<Acces> listerDAO() throws SQLException {
         ArrayList<Acces> acces = new ArrayList<Acces>();
         try( Statement statement = connection.createStatement() ) {
             ResultSet rsUsers = statement.executeQuery("select * from Acces");
@@ -137,6 +137,8 @@ public class DAOAcces {
         } catch(SQLException e) {
             e.printStackTrace();
         }
+
+        return acces;
     }
 
     public static void ajouterDAO(Acces acces) throws SQLException {
