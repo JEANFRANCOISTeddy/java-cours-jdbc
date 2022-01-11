@@ -1,9 +1,10 @@
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DAOAcces {
 
-    private Connection connection;
+    private static Connection connection;
 
     public DAOAcces() throws SQLException  {
         try {
@@ -111,6 +112,49 @@ public class DAOAcces {
     public void supprimer(String id) throws SQLException {
         try( Statement statement = connection.createStatement() ) {
             statement.executeUpdate("delete from Acces where id = " + id);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void listerDAO() throws SQLException {
+        ArrayList<Acces> acces = new ArrayList<Acces>();
+        try( Statement statement = connection.createStatement() ) {
+            ResultSet rsUsers = statement.executeQuery("select * from Acces");
+            while(rsUsers.next()) {
+                Acces accesObj = new Acces(
+                        rsUsers.getInt(1),
+                        rsUsers.getString("prenom"),
+                        rsUsers.getString("login"),
+                        rsUsers.getString("password"),
+                        rsUsers.getString("statut"),
+                        rsUsers.getInt("age")
+                );
+
+                acces.add(accesObj);
+                break;
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ajouterDAO(Acces acces) throws SQLException {
+        try( Statement statement = connection.createStatement() ) {
+            statement.executeUpdate("insert into Acces (prenom, login, password, statut, age) values ('"
+                    + acces.prenom + "', '"
+                    + acces.login + "', '"
+                    + acces.password + "', '"
+                    + acces.statut + "', '"
+                    + acces.age + "')");
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void supprimerDAO(Acces acces) throws SQLException {
+        try( Statement statement = connection.createStatement() ) {
+            statement.executeUpdate("delete from Acces where id = " + acces.id);
         } catch(SQLException e) {
             e.printStackTrace();
         }
